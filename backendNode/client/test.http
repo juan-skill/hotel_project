@@ -1,6 +1,8 @@
-# GET http://127.0.0.1:3000/api/hotels/
+GET http://127.0.0.1:3000/api/hotels/
 
-# GET http://127.0.0.1:3000/api/hotels/32
+###
+GET http://127.0.0.1:3000/api/hotels/60e26da43723d5900bbc456c
 
-GET http://127.0.0.1:3000/api/hotels/star/2
+###
+GET http://127.0.0.1:3000/api/hotels/star/3
 
