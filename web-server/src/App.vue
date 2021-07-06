@@ -1,5 +1,7 @@
 <template>
   <v-app>
+    
+    <!--
     <v-app-bar
       app
       color="primary"
@@ -37,16 +39,48 @@
       </v-btn>
     </v-app-bar>
 
-    <v-main>
-      <router-view/>
-    </v-main>
+ <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+    <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          :src="require('./assets/logo-aviatur.svg')"
+          transition="scale-transition"
+          width="200"
+        />
+    </div>  
+    </v-app-bar>
+       -->  
+  <v-container>
+    <Header />
+  </v-container>
+  <v-content>
+    <router-view />  
+  </v-content>
+  <v-container>
+    <Footer />
+  </v-container>  
+
   </v-app>
 </template>
 
 <script>
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+
+
 
 export default {
   name: 'App',
+  components: {
+    Header,
+    Footer
+  },
 
   data: () => ({
     //
