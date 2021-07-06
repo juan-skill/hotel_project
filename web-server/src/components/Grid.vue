@@ -4,7 +4,7 @@
       <v-flex class="error" xs12 md4 lg4 xl4>          
         <filter-panel />     
       </v-flex>
-      <v-flex class="secondary" xs12 md8 lg8 xl8>          
+      <v-flex class="secondary" xs12 md8 lg8 xl8 >          
           <card-hotel />
       </v-flex>
     </v-layout>
