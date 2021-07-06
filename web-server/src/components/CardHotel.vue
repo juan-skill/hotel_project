@@ -1,10 +1,10 @@
 <template>
 <v-container>
-    <v-layout wrap>
-      <v-flex class="error" xs12 md12 lg4 xl4>
+    <v-layout class="mt-5" wrap style="height:20px" align-center justify-center>
+      <v-flex class="error" xs12 md12 lg4 xl4 >
           <v-img
             alt="Vuetify Logo"
-            class="shrink mr-2"
+            class="mx-auto d-block shrink"
             contain
             :src="require('../assets/hotel1.jpg')"
             transition="scale-transition"
@@ -13,12 +13,13 @@
       </v-flex>
       <v-flex class="primary pa-md-4 mx-lg-auto" xs12 md12 lg4 xl4>
         
-        <v-card-title class="white--text mt-3 headline">Hotel Santa Cruz</v-card-title>
+        <v-card-title class="white--text mt-3 headline mb-2">Hotel Santa Cruz</v-card-title>
         <v-row
           align="center"
           class="pa-md-2 mx-auto"
         >
           <v-rating
+              class="pa-md-1"
               :value="3"
               color="amber"
               dense
@@ -39,7 +40,7 @@
       <v-divider vertical></v-divider>
       <v-flex class="warning pa-md-2 mx-lg-auto" xs12 md12 lg4 xl4>
           
-          <v-card-title class="white--text">Precio por la noche de habitación</v-card-title>
+          <div class="white--text text-darken-1 ml-4 mt-4">Precio por la noche de habitación</div>
           <v-card-title class="white--text">ARS 1,268</v-card-title>
 
           <v-card-actions>
@@ -62,9 +63,9 @@ export default {
     methods: {
     reserve () {
       this.loading = true
-
       setTimeout(() => (this.loading = false), 2000)
     },
+
   },
 }
 </script>

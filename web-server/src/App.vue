@@ -59,9 +59,9 @@
   <v-container>
     <Header />
   </v-container>
-  <v-content>
+  
     <router-view />  
-  </v-content>
+  
   <v-container>
     <Footer />
   </v-container>  
