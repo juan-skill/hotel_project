@@ -3,7 +3,12 @@
 Este proyecto comprende de dos componentes básicos para el desarrollo en la web, un backend escrito en NodeJS el cual expondrá una
 API REST para la interacción con la aplicación frontend escrita usando el Framework Vue js.
 
+Version Web
 [![aviaturpro.png](https://i.postimg.cc/hj6wV2TL/aviaturpro.png)](https://postimg.cc/zbw0rSdv)
+
+Version responsiva
+
+[![Captura.png](https://i.postimg.cc/pTgBkTC7/Captura.png)](https://postimg.cc/KkDL8mdr)
 
 ## Instalación
  **1. Paso**
