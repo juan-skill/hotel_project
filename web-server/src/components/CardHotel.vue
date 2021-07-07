@@ -95,7 +95,9 @@
 import { mapActions, mapState } from "vuex";
 
 export default {
-  data: () => ({}),
+  data: () => ({
+    loading: false,
+  }),
   computed: {
     ...mapState(["hotels"]),
   },

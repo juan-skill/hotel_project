@@ -7,14 +7,18 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     hotels: [],
+    copyhotels: [],
     hotel: null,
   },
   mutations: {
     setHotels(state, payload) {
       state.hotels = payload;
+      state.copyhotels = payload;
     },
     setHotel(state, payload) {
       state.hotel = payload;
+      state.hotels = [];
+      state.hotels.push(state.hotel);
     },
   },
   actions: {
@@ -34,11 +38,10 @@ export default new Vuex.Store({
     },
     async getHotel({ commit }, hotelID) {     
         try {
-          console.log(hotelID);
-          const bodyRequest = { hotelID: hotelID };
+         const bodyRequest = { hotelID: hotelID };
           const headersRequest = { "Content-type": "application/json" };
-          const response = await axios.post(
-            `http://127.0.0.1:3000/api/hotels/hotelID`,
+          const response = await axios.get(
+            `http://127.0.0.1:3000/api/hotels/${hotelID}`,
             bodyRequest,
             { headersRequest }
           );
@@ -49,7 +52,8 @@ export default new Vuex.Store({
         } catch (error) {          
           console.warn(error);
         }
-      }
+      },
+
   },
   modules: {
   }

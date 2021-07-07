@@ -5,7 +5,7 @@ exports.getHotels = async (req, res) => {
     const hotels = await Hotel.find()
     res.json(hotels);
   } catch (error) {
-    res.json(error);
+    res.status(404).json({ "error": "Not Found" });
   }    
 };
 
@@ -13,9 +13,10 @@ exports.getHotels = async (req, res) => {
 exports.getHotel = async (req, res) => {
   try {
     const hotel = await Hotel.findById(req.params.id);
+    console.log(hotel);
     res.json(hotel);
   } catch (error) {
-    res.json(error);
+    res.status(404).json({ "error": "Not Found" });
   }
 };
 
