@@ -33,6 +33,7 @@
                   label="Hotel"
                   hide-details="auto"
                   v-on:keyup.13="printHotel"
+                  @input="printHotel"
                 ></v-text-field>
               </v-toolbar>
             </v-list-item-title>
@@ -102,10 +103,14 @@ export default {
   },
   methods: {
     printState() {
-      console.log(this.selected);
+      this.updateHotels();
+      this.selected.forEach((element) => {
+        this.getHotelbystar(element);
+      });
+      if (this.selected.length == 0)
+        this.updateCopyHotels();
     },
     async printHotel() {
-      //console.log(this.hotelSearch);
       let nameHotel = this.hotelSearch;
       if (nameHotel) {
         let resulthotel = this.hotels.filter(
@@ -114,10 +119,11 @@ export default {
         if (resulthotel.length){
           this.getHotel(resulthotel[0]._id);
         }
-          
       }
+      if (nameHotel.length == 0)
+          this.updateCopyHotels();
     },
-    ...mapActions(["getHotel"]),
+    ...mapActions(["getHotel", "getHotelbystar", "updateHotels", "updateCopyHotels"]),
   },
 };
 </script>

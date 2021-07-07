@@ -9,6 +9,7 @@ export default new Vuex.Store({
     hotels: [],
     copyhotels: [],
     hotel: null,
+    starhotels: [],
   },
   mutations: {
     setHotels(state, payload) {
@@ -20,6 +21,18 @@ export default new Vuex.Store({
       state.hotels = [];
       state.hotels.push(state.hotel);
     },
+    setFilterStar(state, payload) {
+      payload.forEach(element => {
+        state.starhotels.push(element);  
+      });
+      state.hotels = state.starhotels;
+    },
+    updateHotel(state) {      
+      state.starhotels = []
+    },
+    updatecopyHotels(state){
+      state.hotels = state.copyhotels;
+    }
   },
   actions: {
     async getHotels({ commit }) {
@@ -30,9 +43,7 @@ export default new Vuex.Store({
         if (response.statusText == "OK") {
             commit("setHotels", response.data);
         }
-        console.log("helsd");
       } catch (error) {
-        console.log("holas")
         console.warn(error);      
       }
     },
@@ -52,8 +63,30 @@ export default new Vuex.Store({
         } catch (error) {          
           console.warn(error);
         }
-      },
+      },      
+      async getHotelbystar({ commit }, star) {     
+        try {
+         const bodyRequest = { star: star };
+          const headersRequest = { "Content-type": "application/json" };
+          const response = await axios.get(
+            `http://127.0.0.1:3000/api/hotels/star/${star}`,
+            bodyRequest,
+            { headersRequest }
+          );
 
+          if (response.statusText == "OK") {
+            commit("setFilterStar", response.data);
+          }
+        } catch (error) {          
+          console.warn(error);
+        }
+      },
+      updateHotels({commit}) {
+        commit("updateHotel");
+      },
+      updateCopyHotels({commit}) {
+        commit("updatecopyHotels");
+      }
   },
   modules: {
   }
