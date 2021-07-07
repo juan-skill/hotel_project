@@ -48,7 +48,7 @@
 
         <div class="group3">
           <span>Precio por noche por habitación</span>
-
+          <span class="cls-price h2">ARS <b>{{ Math.round(hotel.price).toLocaleString('en-EN') }}</b></span>
           <div class="btn-blue">
             <v-btn depressed color="primary" block>
               VER HOTEL
@@ -88,6 +88,10 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.cls-price {
+    color: orange;
 }
 </style>
 
