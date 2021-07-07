@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
     name: 'FilterPanel',
     data() {
@@ -98,13 +99,22 @@ export default {
         hotelSearch: '',
       }        
     },
+    computed: {
+    ...mapState(["hotels"])
+    },
     methods: {
       printState () {
         console.log(this.selected);
       },
       printHotel () {
-        console.log(this.hotelSearch);
-      }
+        //console.log(this.hotelSearch);
+        let nameHotel = this.hotelSearch
+        let hotel = this.hotels.filter(hotel => hotel.name.toLowerCase() == nameHotel.toLowerCase());
+        let { _id } = hotel;
+        console.log(_id);
+        //this.getHotel(this.hotel);
+      },
+      ...mapActions(["getHotel"]),
     }
 
 }

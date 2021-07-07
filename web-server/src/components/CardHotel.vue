@@ -1,122 +1,114 @@
 <template>
-  <v-container>
+  <div>
     <v-card
       v-for="hotel in hotels"
       :key="hotel.id"
-    >   
-    <v-layout 
-      class="" 
-      wrap 
-      style="height:20px" 
-      align-center 
-      justify-center
+      :loading="loading"
+      class="mx-auto my-12"
+      :class="{ 'cls-div': $vuetify.breakpoint.lg }"
     >
-      <v-flex class="error" xs12 md12 lg4 xl4 >
-          <v-img
-            alt="Vuetify Logo"
-            class="mx-auto d-block shrink"
-            contain
-            :src="require(`../assets/${hotel.image}`)"
-            transition="scale-transition"
-            width="300"
-          />
-      </v-flex>
-      <v-flex class="primary pa-md-4 mx-lg-auto" xs12 md12 lg4 xl4>
-        
-        <v-card-title class="white--text mt-3 headline mb-2">{{ hotel.name }}</v-card-title>
+      <div xs12 md14 lg4 xl4>
+        <v-img
+          class="cls-img mx-auto d-block"
+          max-width="250px"
+          :src="require(`../assets/hotels/${hotel.image}`)"
+        ></v-img>
+      </div>
 
-          <v-rating
-              class="pa-md-1"
+      <div xs12 md4 lg4 xl4>
+        <v-card-title>{{ hotel.name }}</v-card-title>
+
+        <v-card-text>
+          <v-row align="center" class="mx-0">
+            <v-rating
               :value="Number(`${hotel.stars}`)"
               color="amber"
               dense
               half-increments
               readonly
               size="14"
-          ></v-rating>
+            ></v-rating>
+          </v-row>
 
-        
-
-        
-        <v-container class="pa-md-4 mx-lg-auto">
-          <v-toolbar>
+          <div class="hola my-4">
             <v-img
-            v-for="item in hotel.amenities"
-            :key="item"
-            :src="require(`../assets/icons/amenities/${item}.svg`)"
-            max-height="16px"
-            max-width="16px"
-          >
-          </v-img>
-          </v-toolbar>
-          
-        </v-container>
-      
-      </v-flex>
-      <v-divider vertical></v-divider>
-      <v-flex class="warning pa-md-2 mx-lg-auto" xs12 md12 lg4 xl4>
-          
-          <div class="white--text text-darken-1 ml-4 mt-4">Precio por la noche de habitación</div>
-          <v-card-title class="white--text"><span xs12>ARS </span> <b>{{ String(hotel.price).replace(".", ",") }}</b></v-card-title>
+              class="mx-1"
+              max-height="15px"
+              max-width="15px"
+              v-for="amenitie in hotel.amenities"
+              :key="amenitie"
+              :src="require(`../assets/icons/amenities/${amenitie}.svg`)"
+            ></v-img>
+          </div>
+        </v-card-text>
+      </div>
 
-          <v-card-actions>
-            <v-btn
-              color="blue darken-1"
-              text
-              @click="reserve"
-            >
-            VER HOTEL
-          </v-btn>
-      </v-card-actions>
-      </v-flex>
-    </v-layout>
-  </v-card>
-</v-container>    
+      <div xs12 md4 lg4 xl4>
+        <v-divider vertical class="mx-4"></v-divider>
+
+        <div class="group3">
+          <span>Precio por noche por habitación</span>
+
+          <div class="btn-blue">
+            <v-btn depressed color="primary" block>
+              VER HOTEL
+            </v-btn>
+          </div>
+        </div>
+      </div>
+    </v-card>
+  </div>
 </template>
 
-<script>
-export default {
-    name: 'CardHotel',
-    data() {
-      return {
-        hotels: [
-           {
-            "_id": "2347lsjdkfs",
-            "name": "Hotel Stefanos",
-            "stars": 4,
-            "price": 994.18,
-            "image": "hotel1.jpg",
-            "amenities": [
-              "safety-box",
-              "nightclub",
-              "deep-soaking-bathtub",
-              "beach",
-              "business-center"
-            ]
-          },
-          {
-            "_id": "2347lsiuewks",
-            "name": "Hotel Santa Cruz",
-            "stars": 3,
-            "price": 1267.57,
-            "image": "hotel1.jpg",
-            "amenities": [
-              "nightclub",
-              "business-center",
-              "bathtub",
-              "newspaper",
-              "restaurant"
-            ]
-          }
-        ]
-      }
-    },
-    methods: {
-    reserve () {
-      this.loading = true
-      setTimeout(() => (this.loading = false), 2000)
-    },
-
-  },
+<style scoped>
+.hola {
+  display: flex;
 }
+
+.group3 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btn-blue {
+  width: 80%;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.cls-img {
+  margin: 2rem;
+  padding-top: 2rem;
+}
+
+.cls-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+
+<script>
+import { mapActions, mapState } from "vuex";
+
+export default {
+  data: () => ({}),
+  computed: {
+    ...mapState(["hotels"]),
+  },
+  mounted() {
+    this.getHotels();
+  },
+  methods: {
+    reserve() {
+      this.loading = true;
+      //setTimeout(() => (this.loading = false), 5000);
+    },
+    ...mapActions(["getHotels"]),
+  },
+
+};
 </script>

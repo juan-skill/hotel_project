@@ -1,6 +1,6 @@
 <template>
-    <v-main flued>
-    <v-layout wrap>
+    <v-main>
+    <v-layout :wrap="true">
       <v-flex class="error" xs12 md4 lg4 xl4>          
         <filter-panel />     
       </v-flex>
