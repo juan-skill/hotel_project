@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const connectionDB = require('./db.conexion');
 const routerHotels = require('./routes/hotels.routes');
+const cors = require('cors');
 const app = express();
 
 // databases
@@ -12,6 +13,7 @@ app.set('name', 'rest-api-nodejs');
 app.set('port', process.env.port || 3000);
 
 //middleware
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
